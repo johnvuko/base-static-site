@@ -40,7 +40,7 @@ Check the version of `optipng` with `optipng -v` if it's inferior to 0.7, you ha
 
 Once you have everything is installed, you have to copy the repository:
 ```shell
-curl -L -O https://github.com/jonathantribouharet/base-static-site/archive/master.zip && unzip master -d site && rm master.zip
+curl -L -O https://github.com/jonathantribouharet/base-static-site/archive/master.zip && unzip master && rm master.zip && mv base-static-site-master site
 ```
 This command download the latest version, unzip it in `site` folder and remove the downloaded archive.
 
