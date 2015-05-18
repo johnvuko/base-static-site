@@ -42,17 +42,7 @@ fi
 
 rm -rf prod
 mkdir prod
-
-mkdir prod/css/
-mkdir prod/js/
-mkdir prod/img/
-mkdir prod/font/
-
-cp dev/*.html prod/
-cp -r dev/css/ prod/
-cp -r dev/js/ prod/
-cp -r dev/img/ prod/
-cp -r dev/font/ prod/
+cp -R dev/. prod
 
 for file in $(find prod/ -type f -not -path '*/\.*' -name *.html)
 do
