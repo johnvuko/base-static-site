@@ -79,3 +79,6 @@ When you run `compress.sh` by doing
 ## License
 
 This code is released under the MIT license. See the LICENSE file for more info.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jonathantribouharet/base-static-site/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
