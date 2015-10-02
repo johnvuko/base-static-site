@@ -1,4 +1,5 @@
 #!/bin/sh
+# version 1.0.4
 
 if [ ! -x /usr/local/bin/cleancss ];
 then
@@ -11,7 +12,7 @@ fi
 if [ ! -x /usr/local/bin/uglifyjs ];
 then
     echo You have to install uglifyjs
-	echo Try sudo npm install uglify-js -g
+    echo Try sudo npm install uglify-js -g
     echo More information on https://github.com/mishoo/UglifyJS2
     exit
 fi
@@ -19,7 +20,7 @@ fi
 if [ ! -x /usr/local/bin/html-minifier ];
 then
     echo You have to install html-minifier
-	echo Try sudo npm install html-minifier -g
+    echo Try sudo npm install html-minifier -g
     echo More information on https://github.com/kangax/html-minifier
     exit
 fi
@@ -47,34 +48,29 @@ cp -R dev/. prod
 for file in $(find prod/ -type f -not -path '*/\.*' -name *.html)
 do
     html-minifier --remove-comments --collapse-whitespace --remove-redundant-attributes --case-sensitive -o $file $file
-    gzip -9 -c $file > $file.gz
 done
 
 for file in $(find prod/css/ -type f -not -path '*/\.*')
 do
-	cleancss -o $file $file
-	gzip -9 -c $file > $file.gz
+    cleancss -o $file $file
 done
 
 for file in $(find prod/js/ -type f -not -path '*/\.*')
 do
-	uglifyjs $file -o $file
-	gzip -9 -c $file > $file.gz
-done
-
-for file in $(find prod/font/ -type f -not -path '*/\.*')
-do
-	gzip -9 -c $file > $file.gz
+    uglifyjs $file -o $file
 done
 
 for file in $(find prod/img/ -type f -not -path '*/\.*' -name *.png)
 do
-	optipng -o7 -strip=all $file
-	gzip -9 -c $file > $file.gz
+    optipng -o7 -strip=all $file
 done
 
 for file in $(find prod/img/ -type f -not -path '*/\.*' -name *.jpg)
 do
-	jpegoptim -m 80 --strip-all $file
-	gzip -9 -c $file > $file.gz
+    jpegoptim -m 80 --strip-all $file
+done
+
+for file in $(find prod/ -type f -not -path '*/\.*')
+do
+    gzip -9 -c $file > $file.gz
 done
